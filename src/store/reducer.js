@@ -2,12 +2,12 @@ import type from "./actions";
 import { updatedObject } from "../util/utility";
 
 const initialState = {
-  note: {
-    title: "",
-    body: "",
-  },
   notes: {
-    list: [],
+    list: [
+      { id: 1, title: "a", body: "aaaa" },
+      { id: 2, title: "b", body: "bbbb" },
+      { id: 3, title: "c", body: "cccc" },
+    ],
     error: {},
     loading: false,
     success: false,
@@ -15,17 +15,17 @@ const initialState = {
 };
 
 const noteSave = (state, action) => {
-  const newNote = updatedObject(action.note, { id: Math.random() });
+  const newNote = updatedObject(action.newNote, { id: Math.random() });
   return updatedObject(state, {
     loading: false,
     success: true,
-    notes: state.notes.list.concat(newNote),
+    list: state.notes.list.concat(newNote),
   });
 };
 
 const noteDelete = (state, action) => {
   return updatedObject(state, {
-    notes: state.notes.filter((note) => note.id !== action.noteId),
+    list: state.notes.list.filter((note) => note.id !== action.noteId),
   });
 };
 

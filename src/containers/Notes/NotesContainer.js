@@ -9,14 +9,14 @@ const NotesContainer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    notes: state.notes.list,
+    notesList: state.notes.list,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onNoteDelete: (id) =>
-      dispatch({ type: type.NOTE_DELETE, noteId: id }),
+    onNoteDelete: (id) => dispatch({ type: type.NOTE_DELETE, noteId: id })
+    // onAddNote: () => dispatch({ type: type.NOTE_INIT_REQUEST }),
   };
 };
 

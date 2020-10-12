@@ -4,7 +4,6 @@ import type from "../../store/actions";
 import React from "react";
 
 const EditNoteContainer = (props) => {
-  console.log(props);
   return <EditNotes {...props} />;
 };
 const mapStateToProps = (state) => {

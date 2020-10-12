@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,30 +16,32 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100%",
     margin: 10,
     padding: 20,
-    maxWidth: 1250,
+    maxWidth: 1150,
   },
 }));
-const list = [
-  { id: 1, title: "a", body: "aaaa" },
-  { id: 2, title: "b", body: "bbbb" },
-  { id: 3, title: "c", body: "cccc" },
-];
-const notes = (props) => {
+
+const Notes = (props) => {
   const classes = useStyles();
 
   return (
     <div className={classes.rootStyle}>
       <Paper className={classes.paperStyle}>
+        <Grid
+          container
+          direction="row"
+          justify="flex-end"
+          alignItems="flex-start"
+        >
+          <Button variant="contained" onClick={props.onAddNote}>Add</Button>
+        </Grid>
         <Grid container spacing={3} direction="row">
           {/* <h1>Notes Edit page</h1> */}
-          <ListNotes noteList={list} />
-          <EditNotes />
+          <ListNotes noteList={props.notesList} {...props} />
+          {/* <EditNotes /> */}
         </Grid>
       </Paper>
     </div>
   );
 };
 
-export default notes;
-
-notes.propTypes = {};
+export default Notes;

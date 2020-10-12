@@ -1,10 +1,15 @@
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import * as PropTypes from "prop-types";
 import React from "react";
-import ListNotes from "./ListNotes";
-import EditNotes from "./EditNotes";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   rootStyle: {
@@ -22,20 +27,32 @@ const useStyles = makeStyles((theme) => ({
 
 const notes = (props) => {
   const classes = useStyles();
-  console.log(props);
+
+  const listItemHandleClick = (list) => {
+    props.history.push({ pathname: `/notes/${list.id}`, search : `?title=${list.title}&body=${list.body}`});
+  };
 
   return (
     <div className={classes.rootStyle}>
       <Paper className={classes.paperStyle}>
         <Grid container spacing={3} direction="column">
-          {props.noteList.map((list) => (
-            <article key={list.id} className="NoteList">
-              <h1>{list.title}</h1>
-              <div className="Info">
-                <div className="BodyList">{list.body}</div>
-              </div>
-            </article>
-          ))}
+          <List>
+            {props.noteList.map((list) => (
+              <ListItem
+                key={list.id}
+                onClick={() => listItemHandleClick(list)}
+              >
+                <ListItemText primary={list.title} secondary={list.body} />
+                <ListItemSecondaryAction
+                  onClick={() => props.onNoteDelete(list.id)}
+                >
+                  <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
         </Grid>
       </Paper>
     </div>

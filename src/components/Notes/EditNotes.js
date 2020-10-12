@@ -20,21 +20,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 const notes = (props) => {
   const classes = useStyles();
-  console.log(props);
-  const handleSubmit = (values) => {
-    console.log(values);
-  };
+  // const handleSubmit = (values) => {
+  // };
+  
   return (
     <div className={classes.rootStyle}>
       <Paper className={classes.paperStyle}>
-        <Grid
-          container
-          direction="row"
-          justify="flex-end"
-          alignItems="flex-start"
-        >
-          <Button onClick={props.onAddNote}>Add</Button>
-        </Grid>
         <Grid container spacing={3}>
           <form noValidate onSubmit={handleSubmit}>
             <TextField
@@ -44,7 +35,7 @@ const notes = (props) => {
               label="Title"
               name="Title"
               variant="outlined"
-            //   value={props.note.title}
+              //   value={props.note.title}
             />
             <TextField
               id="note-body"
@@ -53,7 +44,7 @@ const notes = (props) => {
               multiline
               fullWidth
               variant="outlined"
-            //   value={props.note.body}
+              //   value={props.note.body}
             />
             <Button
               type="submit"
