@@ -3,8 +3,8 @@ import { updatedObject } from "../util/utility";
 
 const initialState = {
   note: {
-    title: '',
-    body: '',
+    title: "",
+    body: "",
   },
   notes: {
     list: [],
@@ -15,17 +15,17 @@ const initialState = {
 };
 
 const noteSave = (state, action) => {
-  const newNote = updatedObject(action.orderData, { id: action.orderId });
+  const newNote = updatedObject(action.note, { id: Math.random() });
   return updatedObject(state, {
     loading: false,
     success: true,
-    notes: state.notes.concat(newNote),
+    notes: state.notes.list.concat(newNote),
   });
 };
 
 const noteDelete = (state, action) => {
   return updatedObject(state, {
-    notes: state.notes.filter(note => note.id !== action.noteId)
+    notes: state.notes.filter((note) => note.id !== action.noteId),
   });
 };
 

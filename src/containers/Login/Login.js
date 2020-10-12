@@ -33,7 +33,10 @@ const Login = (props) => {
   });
   const classes = loginStyles();
 
-  const handleSubmit = () => props.history.push('/notes');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    return props.history.push("/notes");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
