@@ -10,4 +10,4 @@ export default type;
 
 export const noteSave = createAction(type.NOTE_SAVE);
 export const noteDelete = createAction(type.NOTE_DELETE);
-export const notAdd = createAction(type.ADD_NOTE);
+export const noteAdd = createAction(type.ADD_NOTE);

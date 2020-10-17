@@ -1,15 +1,9 @@
-import { makeStyles } from "@material-ui/core";
+import { Grid, IconButton, makeStyles, Paper } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   note: {
-    width: "250px",
-    padding: "16px",
-    textAlign: "center",
-    border: "1px solid #eee",
-    boxShadow: "0 2px 3px #ccc",
-    margin: "10px",
-    boxSizing: "border-box",
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#C0DDF5",
@@ -17,15 +11,35 @@ const useStyles = makeStyles((theme) => ({
     "&:active": {
       backgroundColor: "#C0DDF5",
     },
+    h1: {
+      padding: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: "center",
+      color: theme.palette.text.secondary,
+    },
   },
 }));
 const note = (props) => {
   const classes = useStyles();
+
   return (
-    <article className={classes.note} onClick={props.clicked}>
-      <h1>{props.title}</h1>
-      <p>{props.body}</p>
-    </article>
+    <Paper className={classes.paper}>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <h1 className={classes.note} onClick={props.clicked}>
+          {props.title}
+        </h1>
+        {/* <p className={classes.h1}>{props.body}</p> */}
+        <IconButton
+          aria-label="delete"
+          className={classes.margin}
+          onClick={props.deleted}
+        >
+          <DeleteIcon fontSize="small" />
+        </IconButton>
+      </Grid>
+    </Paper>
   );
 };
 
