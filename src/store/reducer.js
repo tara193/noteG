@@ -1,5 +1,4 @@
 import type from "./actions";
-import { updatedObject } from "../util/utility";
 
 const initialState = {
   notes: {
@@ -8,48 +7,44 @@ const initialState = {
       { id: 2, title: "b", body: "bbbb" },
       { id: 3, title: "c", body: "cccc" },
     ],
-    error: {},
+    error: false,
     loading: false,
     success: false,
   },
 };
 
 const noteSave = (state, action) => {
-  const newNote = updatedObject(action.newNote, { id: Math.random() });
-  return updatedObject(state, {
+  let updateNote;
+  if (action.id) {
+    const prodIndex = state.products.findIndex((p) => p.id === action.id);
+    updateNote = { id: action.id, title: action.title, body: action.body };
+    const updatedNotes = [...state.notes.list];
+    updatedNotes[prodIndex] = updateNote;
+  }
+  return { ...state.notes, loading: false, success: true, list: updatedNotes };
+};
+
+const noteAdd = (state, action) => {
+  const newNote = { title: action.title, body: action.body, id: Math.random() };
+  return {
+    ...state.notes,
     loading: false,
     success: true,
     list: state.notes.list.concat(newNote),
-  });
+  };
 };
 
 const noteDelete = (state, action) => {
-  return updatedObject(state, {
+  return {
+    ...state.notes,
     list: state.notes.list.filter((note) => note.id !== action.noteId),
-  });
-};
-
-const noteFetchRequest = (state, action) => {
-  return updatedObject(state, { loading: false });
-};
-const noteFetchSuccess = (state, action) => {
-  return updatedObject(state, { notes: action.notes, loading: false });
-};
-
-const noteFetchFailure = (state, action) => {
-  return updatedObject(state, { loading: false });
+  };
 };
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
-    case type.NOTE_FETCH_REQUEST:
-      return noteFetchRequest(state, action);
-    case type.NOTE_FETCH_SUCCESS:
-      return noteFetchSuccess(state, action);
-    case type.NOTE_FETCH_FAILURE:
-      return noteFetchFailure(state, action);
-    case type.NOTE_INIT_REQUEST:
-      return { ...state, ...initialState.note };
+    case type.NOTE_ADD:
+      return noteAdd(state, action);
     case type.NOTE_SAVE:
       return noteSave(state, action);
     case type.NOTE_DELETE:

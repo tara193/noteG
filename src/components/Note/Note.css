@@ -1,4 +1,4 @@
-.ListNotes {
+.Note {
     width: 250px;
     padding: 16px;
     text-align: center;
@@ -9,12 +9,7 @@
     cursor: pointer;
 }
 
-.ListNotes:hover,
-.ListNotes:active {
+.Note:hover,
+.Note:active {
     background-color: #C0DDF5;
-}
-
-.BodyList {
-    margin: 16px 0;
-    color: #ccc;
 }

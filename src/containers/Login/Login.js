@@ -5,7 +5,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
 
 const loginStyles = makeStyles((theme) => ({
   paper: {

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import Login from "./containers/Login/Login";
-import EditNoteContainer from "./containers/Notes/EditNoteContainer";
-import Notes from "./containers/Notes/NotesContainer";
+import Notes from "./containers/Notes/Notes";
 
 class App extends Component {
   render() {
@@ -16,7 +15,8 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/notes" exact component={Notes} />
-            <Route path="/notes/:id" component={EditNoteContainer} />
+            {/* <Route path="/notes/:id" component={EditNoteContainer} /> */}
+            {/* <Route path="/note" exact component={NewNote} /> */}
           </Switch>
         </div>
       </div>
